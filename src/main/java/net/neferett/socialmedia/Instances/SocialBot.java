@@ -5,13 +5,13 @@ import net.neferett.tradingplugin.Trade.Trade;
 
 public interface SocialBot {
 
-    void sendTrade(Trade trade);
-
-    void sendPriceHit(Trade trade, PriceAction action);
+    Object sendTrade(Trade trade);
 
     void sendCurrentResults(Trade trade, int id);
 
     void sendMessage(String message);
+
+    void updatePrice(Trade trade);
 
     void selfRegister();
 

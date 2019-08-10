@@ -3,14 +3,12 @@ package net.neferett.socialmedia;
 import lombok.Getter;
 import net.neferett.coreengine.CoreEngine;
 import net.neferett.coreengine.Processors.Config.PreConfig;
-import net.neferett.coreengine.Processors.Logger.Logger;
 import net.neferett.coreengine.Processors.Plugins.ExtendablePlugin;
 import net.neferett.coreengine.Processors.Plugins.Plugin;
 import net.neferett.socialmedia.Config.ConfigFile;
 import net.neferett.socialmedia.Manager.BotsManager;
 import net.neferett.socialmedia.Medias.TelegramBot;
 import org.telegram.telegrambots.ApiContextInitializer;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
 
 @Plugin(name = "SocialMedia", configPath = "SocialMedia/config.json")
 @Getter
@@ -31,6 +29,8 @@ public class SocialMedia extends ExtendablePlugin {
 
     @Override
     public void onEnable() {
+        ApiContextInitializer.init();
+
         this.loadConfig();
 
         this.botsManager = new BotsManager();
@@ -38,8 +38,6 @@ public class SocialMedia extends ExtendablePlugin {
         this.botsManager.add(new TelegramBot());
 
         this.botsManager.registerBots();
-
-        this.botsManager.sendMessage("Trading Bot activated !");
     }
 
     @Override
